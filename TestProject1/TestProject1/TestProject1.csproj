@@ -8,4 +8,10 @@
     <PackageReference Include="xunit" Version="2.2.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ConsoleApp1\ConsoleApp1.csproj">
+      <Project>{E07A521A-F015-4D63-B16A-59821DEB3B77}</Project>
+      <Name>ConsoleApp1</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
