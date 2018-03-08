@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,12 +31,11 @@ namespace GildedRose
             app.UpdateQuality();
 
             System.Console.ReadKey();
-
         }
-        
-        
+
+
         IList<Item> Items;
-        
+
         public Program(IList<Item> items)
         {
             Items = items;
@@ -47,77 +46,97 @@ namespace GildedRose
         {
             for (var i = 0; i < Items.Count; i++)
             {
-                if (Items[i].Name != "Fine Wine" && Items[i].Name != "Fruit")
+                var item = Items[i];
+
+                ProcessItems(item);
+            }
+        }
+
+        private void ProcessItems(Item item)
+        {
+            if (item.Name != "Fine Wine" && item.Name != "Fruit" && item.Name != "Tinned Food")
+            {
+                ReduceQuality(item);
+            }
+            else
+            {
+                if (item.Quality < 50)
                 {
-                    if (Items[i].Quality > 0)
-                    {
-                        if (Items[i].Name != "Tinned Food")
-                        {
-                            Items[i].Quality = Items[i].Quality - 1;
-                        }
-                    }
+                    item.Quality = item.Quality + 1;
+
+                    IncreaseFruitQuality(item);
                 }
-                else
+            }
+
+            ReduceSellInIfNotTinnedFood(item);
+
+            if (item.SellIn < 0)
+            {
+                if (item.Name != "Fine Wine")
                 {
-                    if (Items[i].Quality < 50)
+                    if (item.Name != "Fruit")
                     {
-                        Items[i].Quality = Items[i].Quality + 1;
-
-                        if (Items[i].Name == "Fruit")
+                        if (item.Quality > 0)
                         {
-                            if (Items[i].SellIn < 11)
+                            if (item.Name != "Tinned Food")
                             {
-                                if (Items[i].Quality < 50)
-                                {
-                                    Items[i].Quality = Items[i].Quality + 1;
-                                }
+                                item.Quality = item.Quality - 1;
                             }
-
-                            if (Items[i].SellIn < 6)
-                            {
-                                if (Items[i].Quality < 50)
-                                {
-                                    Items[i].Quality = Items[i].Quality + 1;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (Items[i].Name != "Tinned Food")
-                {
-                    Items[i].SellIn = Items[i].SellIn - 1;
-                }
-
-                if (Items[i].SellIn < 0)
-                {
-                    if (Items[i].Name != "Fine Wine")
-                    {
-                        if (Items[i].Name != "Fruit")
-                        {
-                            if (Items[i].Quality > 0)
-                            {
-                                if (Items[i].Name != "Tinned Food")
-                                {
-                                    Items[i].Quality = Items[i].Quality - 1;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            Items[i].Quality = Items[i].Quality - Items[i].Quality;
                         }
                     }
                     else
                     {
-                        if (Items[i].Quality < 50)
-                        {
-                            Items[i].Quality = Items[i].Quality + 1;
-                        }
+                        item.Quality = item.Quality - item.Quality;
+                    }
+                }
+                else
+                {
+                    if (item.Quality < 50)
+                    {
+                        item.Quality = item.Quality + 1;
                     }
                 }
             }
         }
 
+        private void IncreaseFruitQuality(Item item)
+        {
+            if (item.Name == "Fruit")
+            {
+                if (item.SellIn < 11)
+                {
+                    IfQualityLessThan50IncreaseQuality(item);
+                }
+
+                if (item.SellIn < 6)
+                {
+                    IfQualityLessThan50IncreaseQuality(item);
+                }
+            }
+        }
+
+        private void ReduceSellInIfNotTinnedFood(Item item)
+        {
+            if (item.Name != "Tinned Food")
+            {
+                item.SellIn = item.SellIn - 1;
+            }
+        }
+
+        private void IfQualityLessThan50IncreaseQuality(Item item)
+        {
+            if (item.Quality < 50)
+            {
+                item.Quality = item.Quality + 1;
+            }
+        }
+
+        private void ReduceQuality(Item item)
+        {
+            if (item.Quality > 0)
+            {
+                item.Quality = item.Quality - 1;
+            }
+        }
     }
 }
