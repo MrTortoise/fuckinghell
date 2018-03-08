@@ -1,0 +1,13 @@
+/home/john/git/kata/gilded/TestProject1/TestProject1/obj/Debug/netcoreapp2.0/TestProject1.csproj.CoreCompileInputs.cache
+/home/john/git/kata/gilded/TestProject1/TestProject1/obj/Debug/netcoreapp2.0/TestProject1.AssemblyInfoInputs.cache
+/home/john/git/kata/gilded/TestProject1/TestProject1/obj/Debug/netcoreapp2.0/TestProject1.AssemblyInfo.cs
+/home/john/git/kata/gilded/TestProject1/TestProject1/bin/Debug/netcoreapp2.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll
+/home/john/git/kata/gilded/TestProject1/TestProject1/bin/Debug/netcoreapp2.0/xunit.runner.utility.netstandard15.dll
+/home/john/git/kata/gilded/TestProject1/TestProject1/bin/Debug/netcoreapp2.0/xunit.runner.reporters.netstandard15.dll
+/home/john/git/kata/gilded/TestProject1/TestProject1/bin/Debug/netcoreapp2.0/TestProject1.deps.json
+/home/john/git/kata/gilded/TestProject1/TestProject1/bin/Debug/netcoreapp2.0/TestProject1.runtimeconfig.json
+/home/john/git/kata/gilded/TestProject1/TestProject1/bin/Debug/netcoreapp2.0/TestProject1.runtimeconfig.dev.json
+/home/john/git/kata/gilded/TestProject1/TestProject1/bin/Debug/netcoreapp2.0/TestProject1.dll
+/home/john/git/kata/gilded/TestProject1/TestProject1/bin/Debug/netcoreapp2.0/TestProject1.pdb
+/home/john/git/kata/gilded/TestProject1/TestProject1/obj/Debug/netcoreapp2.0/TestProject1.dll
+/home/john/git/kata/gilded/TestProject1/TestProject1/obj/Debug/netcoreapp2.0/TestProject1.pdb
