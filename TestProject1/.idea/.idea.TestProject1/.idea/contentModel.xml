@@ -20,6 +20,7 @@
         </e>
       </e>
       <e p="TestProject1" t="IncludeRecursive">
+        <e p="FineWineSpec.cs" t="Include" />
         <e p="TestProject1.csproj" t="IncludeRecursive" />
         <e p="UnitTest1.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
