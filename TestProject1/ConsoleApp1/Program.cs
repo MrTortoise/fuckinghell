@@ -33,10 +33,6 @@ namespace GildedRose
             app.UpdateItems();
 
             System.Console.ReadKey();
-<<<<<<< HEAD
-        }
-
-=======
         }
 
         public static Item CreateFruit(int sellIn, int quality)
@@ -59,7 +55,6 @@ namespace GildedRose
             return new Item {Name = StandardItem, SellIn = 10, Quality = 20};
         }
 
->>>>>>> timetravel
 
         IList<Item> Items;
 
@@ -73,73 +68,6 @@ namespace GildedRose
         {
             foreach (var item in Items)
             {
-<<<<<<< HEAD
-                var item = Items[i];
-
-                ProcessItems(item);
-            }
-        }
-
-        private void ProcessItems(Item item)
-        {
-            if (item.Name != "Fine Wine" && item.Name != "Fruit" && item.Name != "Tinned Food")
-            {
-                ReduceQuality(item);
-            }
-            else
-            {
-                if (item.Quality < 50)
-                {
-                    item.Quality = item.Quality + 1;
-
-                    IncreaseFruitQuality(item);
-                }
-            }
-
-            ReduceSellInIfNotTinnedFood(item);
-
-            if (item.SellIn < 0)
-            {
-                if (item.Name != "Fine Wine")
-                {
-                    if (item.Name != "Fruit")
-                    {
-                        if (item.Quality > 0)
-                        {
-                            if (item.Name != "Tinned Food")
-                            {
-                                item.Quality = item.Quality - 1;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        item.Quality = item.Quality - item.Quality;
-                    }
-                }
-                else
-                {
-                    if (item.Quality < 50)
-                    {
-                        item.Quality = item.Quality + 1;
-                    }
-                }
-            }
-        }
-
-        private void IncreaseFruitQuality(Item item)
-        {
-            if (item.Name == "Fruit")
-            {
-                if (item.SellIn < 11)
-                {
-                    IfQualityLessThan50IncreaseQuality(item);
-                }
-
-                if (item.SellIn < 6)
-                {
-                    IfQualityLessThan50IncreaseQuality(item);
-=======
                 UpdateItem(item);
             }
         }
@@ -208,7 +136,6 @@ namespace GildedRose
                             item.Quality = item.Quality - 1;
                         }
                     }
->>>>>>> timetravel
                 }
                 else
                 {
@@ -223,32 +150,5 @@ namespace GildedRose
                 }
             }
         }
-<<<<<<< HEAD
-
-        private void ReduceSellInIfNotTinnedFood(Item item)
-        {
-            if (item.Name != "Tinned Food")
-            {
-                item.SellIn = item.SellIn - 1;
-            }
-        }
-
-        private void IfQualityLessThan50IncreaseQuality(Item item)
-        {
-            if (item.Quality < 50)
-            {
-                item.Quality = item.Quality + 1;
-            }
-        }
-
-        private void ReduceQuality(Item item)
-        {
-            if (item.Quality > 0)
-            {
-                item.Quality = item.Quality - 1;
-            }
-        }
-=======
->>>>>>> timetravel
     }
 }
