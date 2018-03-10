@@ -14,7 +14,11 @@
     ],
     "frameworks": {
       "netcoreapp2.0": {
-        "projectReferences": {}
+        "projectReferences": {
+          "/home/john/git/kata/gilded/TestProject1/ConsoleApp1/ConsoleApp1.csproj": {
+            "projectPath": "/home/john/git/kata/gilded/TestProject1/ConsoleApp1/ConsoleApp1.csproj"
+          }
+        }
       }
     },
     "warningProperties": {

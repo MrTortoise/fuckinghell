@@ -1659,6 +1659,16 @@
         "build": {
           "build/netcoreapp1.0/xunit.runner.visualstudio.props": {}
         }
+      },
+      "ConsoleApp1/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "compile": {
+          "bin/placeholder/ConsoleApp1.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ConsoleApp1.dll": {}
+        }
       }
     }
   },
@@ -5604,10 +5614,16 @@
         "xunit.runner.visualstudio.2.2.0.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
+    },
+    "ConsoleApp1/1.0.0": {
+      "type": "project",
+      "path": "../ConsoleApp1/ConsoleApp1.csproj",
+      "msbuildProject": "../ConsoleApp1/ConsoleApp1.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
+      "ConsoleApp1 >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 15.3.0-preview-20170628-02",
       "Microsoft.NETCore.App >= 2.0.0",
       "xunit >= 2.2.0",
@@ -5641,7 +5657,11 @@
       },
       "frameworks": {
         "netcoreapp2.0": {
-          "projectReferences": {}
+          "projectReferences": {
+            "/home/john/git/kata/gilded/TestProject1/ConsoleApp1/ConsoleApp1.csproj": {
+              "projectPath": "/home/john/git/kata/gilded/TestProject1/ConsoleApp1/ConsoleApp1.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
