@@ -8,8 +8,11 @@
     <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="ConsoleApp1" t="IncludeRecursive">
         <e p="ConsoleApp1.csproj" t="IncludeRecursive" />
+        <e p="FineWine.cs" t="Include" />
+        <e p="Fruit.cs" t="Include" />
         <e p="Item.cs" t="Include" />
         <e p="Program.cs" t="Include" />
+        <e p="TinnedFood.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">

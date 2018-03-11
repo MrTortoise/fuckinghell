@@ -6,34 +6,9 @@ using System.Threading.Tasks;
 
 namespace GildedRose
 {
-    public class Fruit : Item
-    {
-        public Fruit(int sellIn, int quality)
-        {
-            Quality = quality;
-            SellIn = sellIn;
-            Name = ItemName;
-        }
-
-        public const string ItemName = "Fruit";
-    }
-
-    public class FineWine : Item
-    {
-        public FineWine(int sellIn, int quality)
-        {
-            Quality = quality;
-            SellIn = sellIn;
-            Name = ItemName;
-        }
-
-        public const string ItemName = "Fine Wine";
-    }
-
     public class Program
     {
         public const string StandardItem = "Standard Item";
-        public const string TinnedFood = "Tinned Food";
         public const string Salad = "Salad";
         private const int MaxQuality = 50;
 
@@ -45,8 +20,8 @@ namespace GildedRose
             {
                 CreateStandardItem(),
                 CreateFineWine(2, 0),
-                new Item {Name = TinnedFood, SellIn = 0, Quality = 80},
-                new Fruit(15, 20),
+                CreateTinnedFood(0, 80),
+                CreateFruit(15, 20),
                 new Item {Name = Salad, SellIn = 3, Quality = 6}
             };
 
@@ -56,16 +31,6 @@ namespace GildedRose
             app.UpdateItems();
 
             System.Console.ReadKey();
-        }
-
-        public static FineWine CreateFineWine(int sellIn, int quality)
-        {
-            return new FineWine(sellIn, quality);
-        }
-
-        private static Item CreateStandardItem()
-        {
-            return new Item {Name = StandardItem, SellIn = 10, Quality = 20};
         }
 
 
@@ -147,48 +112,52 @@ namespace GildedRose
             return fruit.Quality < MaxQuality;
         }
 
+        public static void UpdateItem(TinnedFood item)
+        {
+        }
+
         public static void UpdateItem(Item item)
         {
-            switch (item.Name)
+            if (item.Quality > 0)
             {
-                case FineWine.ItemName:
-                    throw new InvalidOperationException("Fine wine supposed to be handled in own handler");
-
-                    break;
-                case Fruit.ItemName:
-                    throw new InvalidOperationException("Fruit is supposed to be handled in its own handler");
-
-                case TinnedFood:
-                    break;
-                default:
-                    if (item.Quality > 0)
-                    {
-                        item.Quality = item.Quality - 1;
-                    }
-
-                    break;
+                item.Quality = item.Quality - 1;
             }
 
 
-            if (item.Name != TinnedFood)
-            {
-                item.SellIn = item.SellIn - 1;
-            }
+            item.SellIn = item.SellIn - 1;
+
 
             if (item.SellIn >= 0) return;
 
             if (item.Quality > 0)
             {
-                if (item.Name != TinnedFood)
-                {
-                    item.Quality = item.Quality - 1;
-                }
+                item.Quality = item.Quality - 1;
             }
         }
 
         public static Item CreateGenericItem(string randomitem, int sellIn, int quality)
         {
             return new Item {Name = randomitem, Quality = quality, SellIn = sellIn};
+        }
+
+        public static TinnedFood CreateTinnedFood(int sellIn, int quality)
+        {
+            return new TinnedFood(sellIn, quality);
+        }
+
+        public static FineWine CreateFineWine(int sellIn, int quality)
+        {
+            return new FineWine(sellIn, quality);
+        }
+
+        private static Item CreateStandardItem()
+        {
+            return new Item {Name = StandardItem, SellIn = 10, Quality = 20};
+        }
+
+        private static Fruit CreateFruit(int sellIn, int quality)
+        {
+            return new Fruit(sellIn, quality);
         }
     }
 }
