@@ -87,7 +87,19 @@ namespace GildedRose
 
         public static void UpdateItem(FineWine wine)
         {
-            
+            if (wine.Quality < MaxQuality)
+            {
+                wine.Quality = wine.Quality + 1;
+            }
+
+
+            wine.SellIn = wine.SellIn - 1;
+            if (wine.SellIn >= 0) return;
+
+            if (wine.Quality < MaxQuality)
+            {
+                wine.Quality = wine.Quality + 1;
+            }
         }
 
         public static void UpdateItem(Fruit fruit)
@@ -140,10 +152,7 @@ namespace GildedRose
             switch (item.Name)
             {
                 case FineWine.ItemName:
-                    if (item.Quality < MaxQuality)
-                    {
-                        item.Quality = item.Quality + 1;
-                    }
+                    throw new InvalidOperationException("Fine wine supposed to be handled in own handler");
 
                     break;
                 case Fruit.ItemName:
@@ -167,21 +176,12 @@ namespace GildedRose
             }
 
             if (item.SellIn >= 0) return;
-            if (item.Name != FineWine.ItemName)
+
+            if (item.Quality > 0)
             {
-                if (item.Quality > 0)
+                if (item.Name != TinnedFood)
                 {
-                    if (item.Name != TinnedFood)
-                    {
-                        item.Quality = item.Quality - 1;
-                    }
-                }
-            }
-            else
-            {
-                if (item.Quality < MaxQuality)
-                {
-                    item.Quality = item.Quality + 1;
+                    item.Quality = item.Quality - 1;
                 }
             }
         }
