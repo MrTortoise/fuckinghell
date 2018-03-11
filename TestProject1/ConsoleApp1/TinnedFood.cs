@@ -1,6 +1,6 @@
 ﻿namespace GildedRose
 {
-    public class TinnedFood : Item
+    public class TinnedFood : Item, IUpdateItem
     {
         public TinnedFood(int sellId, int quality)
         {
@@ -10,5 +10,9 @@
         }
 
         public const string ItemName = "Tinned Food";
+        public void UpdateItem()
+        {
+            
+        }
     }
 }

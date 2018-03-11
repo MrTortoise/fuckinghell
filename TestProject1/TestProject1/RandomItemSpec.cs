@@ -8,27 +8,27 @@ namespace TestProject1
         [Fact]
         public void Random_item_will_lose_quality()
         {
-            var item = Program.CreateGenericItem("randomItem", 10, 20);
-            Program.UpdateItem(item);
-            
+            var item = new GenericItem("randomItem", 10, 20);
+            item.UpdateItem();
+
             Assert.Equal(item.Quality, 19);
         }
 
         [Fact]
         public void Random_item_will_lose_sell_in()
         {
-            var item = Program.CreateGenericItem("randomItem", 10, 20);
-            Program.UpdateItem(item);
-            
+            var item = new GenericItem("randomItem", 10, 20);
+            item.UpdateItem();
+
             Assert.Equal(item.SellIn, 9);
         }
-        
+
         [Fact]
         public void Random_item_will_lose_2_quality_if_past_sell_by()
         {
-            var item = Program.CreateGenericItem("randomItem", -1, 20);
-            Program.UpdateItem(item);
-            
+            var item = new GenericItem("randomItem", -1, 20);
+            item.UpdateItem();
+
             Assert.Equal(item.Quality, 18);
         }
     }
