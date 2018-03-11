@@ -185,5 +185,10 @@ namespace GildedRose
                 }
             }
         }
+
+        public static Item CreateGenericItem(string randomitem, int sellIn, int quality)
+        {
+            return new Item {Name = randomitem, Quality = quality, SellIn = sellIn};
+        }
     }
 }
