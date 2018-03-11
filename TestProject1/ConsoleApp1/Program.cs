@@ -12,16 +12,27 @@ namespace GildedRose
         {
             Quality = quality;
             SellIn = sellIn;
-            Name = "Fruit";
+            Name = ItemName;
         }
 
         public const string ItemName = "Fruit";
     }
 
+    public class FineWine : Item
+    {
+        public FineWine(int sellIn, int quality)
+        {
+            Quality = quality;
+            SellIn = sellIn;
+            Name = ItemName;
+        }
+
+        public const string ItemName = "Fine Wine";
+    }
+
     public class Program
     {
         public const string StandardItem = "Standard Item";
-        public const string FineWine = "Fine Wine";
         public const string TinnedFood = "Tinned Food";
         public const string Salad = "Salad";
         private const int MaxQuality = 50;
@@ -47,9 +58,9 @@ namespace GildedRose
             System.Console.ReadKey();
         }
 
-        public static Item CreateFineWine(int sellIn, int quality)
+        public static FineWine CreateFineWine(int sellIn, int quality)
         {
-            return new Item {Name = FineWine, SellIn = sellIn, Quality = quality};
+            return new FineWine(sellIn, quality);
         }
 
         private static Item CreateStandardItem()
@@ -72,6 +83,11 @@ namespace GildedRose
             {
                 UpdateItem(item);
             }
+        }
+
+        public static void UpdateItem(FineWine wine)
+        {
+            
         }
 
         public static void UpdateItem(Fruit fruit)
@@ -123,7 +139,7 @@ namespace GildedRose
         {
             switch (item.Name)
             {
-                case FineWine:
+                case FineWine.ItemName:
                     if (item.Quality < MaxQuality)
                     {
                         item.Quality = item.Quality + 1;
@@ -151,7 +167,7 @@ namespace GildedRose
             }
 
             if (item.SellIn >= 0) return;
-            if (item.Name != FineWine)
+            if (item.Name != FineWine.ItemName)
             {
                 if (item.Quality > 0)
                 {
