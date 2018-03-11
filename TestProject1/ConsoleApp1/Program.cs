@@ -6,13 +6,25 @@ using System.Threading.Tasks;
 
 namespace GildedRose
 {
+    public class Fruit : Item
+    {
+        public Fruit(int sellIn, int quality)
+        {
+            Quality = quality;
+            SellIn = sellIn;
+            Name = "Fruit";
+        }
+
+        public const string ItemName = "Fruit";
+    }
+
     public class Program
     {
         public const string StandardItem = "Standard Item";
         public const string FineWine = "Fine Wine";
         public const string TinnedFood = "Tinned Food";
-        public const string Fruit = "Fruit";
         public const string Salad = "Salad";
+        private const int MaxQuality = 50;
 
         static void Main(string[] args)
         {
@@ -23,7 +35,7 @@ namespace GildedRose
                 CreateStandardItem(),
                 CreateFineWine(2, 0),
                 new Item {Name = TinnedFood, SellIn = 0, Quality = 80},
-                CreateFruit(15, 20),
+                new Fruit(15, 20),
                 new Item {Name = Salad, SellIn = 3, Quality = 6}
             };
 
@@ -33,16 +45,6 @@ namespace GildedRose
             app.UpdateItems();
 
             System.Console.ReadKey();
-        }
-
-        public static Item CreateFruit(int sellIn, int quality)
-        {
-            return new Item
-            {
-                Name = Fruit,
-                SellIn = sellIn,
-                Quality = quality
-            };
         }
 
         public static Item CreateFineWine(int sellIn, int quality)
@@ -72,40 +74,65 @@ namespace GildedRose
             }
         }
 
+        public static void UpdateItem(Fruit fruit)
+        {
+            if (BelowMaxQuality(fruit))
+            {
+                fruit.Quality = fruit.Quality + 1;
+
+                if (fruit.SellIn < 11)
+                {
+                    if (fruit.Quality < MaxQuality)
+                    {
+                        fruit.Quality = fruit.Quality + 1;
+                    }
+                }
+
+                if (fruit.SellIn < 6)
+                {
+                    if (fruit.Quality < MaxQuality)
+                    {
+                        fruit.Quality = fruit.Quality + 1;
+                    }
+                }
+            }
+
+            DecreaseSellIn(fruit);
+
+            if (NotPassedSellByDate(fruit)) return;
+
+            fruit.Quality = fruit.Quality - fruit.Quality;
+        }
+
+        private static bool NotPassedSellByDate(Item item)
+        {
+            return item.SellIn >= 0;
+        }
+
+        private static void DecreaseSellIn(Item fruit)
+        {
+            fruit.SellIn = fruit.SellIn - 1;
+        }
+
+        private static bool BelowMaxQuality(Fruit fruit)
+        {
+            return fruit.Quality < MaxQuality;
+        }
+
         public static void UpdateItem(Item item)
         {
             switch (item.Name)
             {
                 case FineWine:
-                    if (item.Quality < 50)
+                    if (item.Quality < MaxQuality)
                     {
                         item.Quality = item.Quality + 1;
                     }
 
                     break;
-                case Fruit:
-                    if (item.Quality < 50)
-                    {
-                        item.Quality = item.Quality + 1;
+                case Fruit.ItemName:
+                    throw new InvalidOperationException("Fruit is supposed to be handled in its own handler");
 
-                        if (item.SellIn < 11)
-                        {
-                            if (item.Quality < 50)
-                            {
-                                item.Quality = item.Quality + 1;
-                            }
-                        }
-
-                        if (item.SellIn < 6)
-                        {
-                            if (item.Quality < 50)
-                            {
-                                item.Quality = item.Quality + 1;
-                            }
-                        }
-                    }
-
-                    break;
                 case TinnedFood:
                     break;
                 default:
@@ -124,27 +151,19 @@ namespace GildedRose
             }
 
             if (item.SellIn >= 0) return;
-
             if (item.Name != FineWine)
             {
-                if (item.Name != Fruit)
+                if (item.Quality > 0)
                 {
-                    if (item.Quality > 0)
+                    if (item.Name != TinnedFood)
                     {
-                        if (item.Name != TinnedFood)
-                        {
-                            item.Quality = item.Quality - 1;
-                        }
+                        item.Quality = item.Quality - 1;
                     }
-                }
-                else
-                {
-                    item.Quality = item.Quality - item.Quality;
                 }
             }
             else
             {
-                if (item.Quality < 50)
+                if (item.Quality < MaxQuality)
                 {
                     item.Quality = item.Quality + 1;
                 }
